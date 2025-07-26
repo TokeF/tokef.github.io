@@ -1,0 +1,38 @@
+
+# Node.js
+node_modules/
+.next/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+
+# Env files
+.env*
+
+# VSCode
+.vscode/
+copilot-instructions.md
+
+# Build output
+dist/
+out/
+
+# Misc
+*.local
+
+# Tailwind CSS JIT cache
+.tailwindcss*
+
+# Coverage
+coverage/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
