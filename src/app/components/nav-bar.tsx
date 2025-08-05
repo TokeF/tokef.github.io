@@ -1,10 +1,12 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function NavBar() {
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,7 +19,7 @@ export default function NavBar() {
   return (
     <nav
       className={`flex items-center justify-between px-6 py-4 text-white transition-colors duration-300 ${
-        scrolled ? "bg-gray-900" : "bg-red-transparent"
+        !scrolled && pathname === "/" ? "bg-red-transparent" : "bg-gray-900"
       }`}
       style={{ position: "sticky", top: 0, zIndex: 50 }}
     >
