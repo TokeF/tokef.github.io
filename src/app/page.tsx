@@ -34,31 +34,27 @@ export default function Home() {
             <div className="flex-1"></div>
           </div>
         </div>
-        <div style={{ paddingTop: "600px" }}>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
-          <h1>Hello world</h1>
+        <div
+          className="mt-[45px]"
+          style={{
+            background: "linear-gradient(90deg,#3B617D, #BE3FBC)",
+          }}
+        >
+          <div className="flex flex-wrap justify-center items-center gap-8 py-8 w-full max-w-[1100px] mx-auto">
+            {[1, 2, 3, 4].map((n) => (
+              <div
+                key={n}
+                className="flex items-center justify-center bg-white rounded-xl font-bold text-2xl shadow-md"
+                style={{
+                  width: "48%",
+                  minWidth: "400px",
+                  height: "480px",
+                }}
+              >
+                {`Place holder ${n}`}
+              </div>
+            ))}
+          </div>
         </div>
       </main>
     </div>
