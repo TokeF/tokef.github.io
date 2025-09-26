@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 
 // Need KaTeX CSS for built in styling
 import "katex/dist/katex.min.css";
-// @ts-ignore // no types for ts
+// @ts-expect-error // no types for ts
 import { BlockMath, InlineMath } from "react-katex";
 
 export default function Home() {
@@ -29,10 +29,10 @@ export default function Home() {
 
         <h3>Deriving the physics of pendulum motion</h3>
         <p>
-          Newtons second law states that "The acceleration{" "}
+          Newtons second law states that &quot;The acceleration
           <InlineMath>{"\\alpha"}</InlineMath> of an object, is proportional to
           the sum of all forces <InlineMath>{"\\vec F"}</InlineMath> acting on
-          it, and inversely proportional to its mass m". Formulated as:
+          it, and inversely proportional to its mass m &quot;. Formulated as:
         </p>
         <BlockMath
           math={
