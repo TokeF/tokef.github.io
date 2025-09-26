@@ -19,7 +19,7 @@ export default function NavBar() {
   return (
     <nav
       className={`flex items-center justify-between px-6 py-4 text-white transition-colors duration-300 ${
-        !scrolled && pathname === "/" ? "bg-red-transparent" : "bg-gray-900"
+        !scrolled && pathname === "/" ? "bgs-transparent" : "bg-black"
       }`}
       style={{ position: "sticky", top: 0, zIndex: 50 }}
     >
