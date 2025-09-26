@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+
+// Need KaTeX CSS for built in styling
+import "katex/dist/katex.min.css";
+// @ts-ignore // no types for ts
 import { BlockMath, InlineMath } from "react-katex";
 
 export default function Home() {
@@ -22,10 +26,19 @@ export default function Home() {
           This interactive canvas shows a simple pendulum, modeled using the
           Euler method for numerical integration..
         </p>
+
         <h3>Deriving the physics of pendulum motion</h3>
         <p>
-          <BlockMath math={period} />
+          Newtons second law states that "The acceleration{" "}
+          <InlineMath>{"\\alpha"}</InlineMath> of an object, is proportional to
+          the sum of all forces <InlineMath>{"\\vec F"}</InlineMath> acting on
+          it, and inversely proportional to its mass m". Formulated as:
         </p>
+        <BlockMath
+          math={
+            "\\alpha = \\frac{\\vec F}{m} \\Rightarrow \\vec F= \\frac{m}{\\alpha}"
+          }
+        />
       </section>
     </main>
   );
