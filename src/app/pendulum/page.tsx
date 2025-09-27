@@ -18,28 +18,107 @@ export default function Home() {
         minHeight: "50vh",
       }}
     >
-      <h2>Pendulum motion simulation</h2>
+      <h2 className="text-2xl font-bold">Pendulum motion simulation</h2>
       <SetupCanvas />
       <section className="max-w-xl mt-8 p-4 bg-gray-50 rounded-lg shadow">
-        <h3>About this simulation</h3>
+        <h3 className="text-xl font-bold">What is this?</h3>
         <p>
           This interactive canvas shows a simple pendulum, modeled using the
-          Euler method for numerical integration..
+          Euler method for numerical integration.
         </p>
 
-        <h3>Deriving the physics of pendulum motion</h3>
+        <h3 className="text-xl font-bold">
+          Deriving the physics of pendulum motion
+        </h3>
         <p>
-          Newtons second law states that &quot;The acceleration
-          <InlineMath>{"\\alpha"}</InlineMath> of an object, is proportional to
-          the sum of all forces <InlineMath>{"\\vec F"}</InlineMath> acting on
-          it, and inversely proportional to its mass m &quot;. Formulated as:
+          Consider an ideal mathematical model af a pendulum. A point mass,
+          called a bob, is suspended from a fixed pivot point via a rigid
+          weightless rod. Newtons second law of motion, can then be used to find
+          the force acting on the mass. The law states that &quot;The net force{" "}
+          <InlineMath>{"\\vec F"}</InlineMath> on an object, is proportional to
+          the accelaration <InlineMath>{"\\alpha"}</InlineMath> and the mass m
+          of the object.&quot; Formulated as:
+        </p>
+        <BlockMath math={"\\vec F = m \\alpha"} />
+        <p>
+          Two forces act on the bob: The tension in the rod, and the force of
+          gravity. The tension force exerted by the rod, is cancelled by the
+          part of gravity acting along the rod. This is easily seen in the case
+          of the pendulum being at rest in the vertical position. Because the
+          the bob is restricted to move in a circle, the gravitational force can
+          be split into a tangential and radial component. Only the tangential
+          component is of interest, since the radial is cancelled by tension,
+          and can be derived using trigonometry:
+        </p>
+        <BlockMath math={"F_{tan} = -mg \\sin(\\theta) = m\\alpha"} />
+        <p>
+          Where g is the gravitational acceleration, and theta is the angle
+          between the rod and the vertical. The negative sign indicates that
+          this force acts to restore the pendulum to its equilibrium position.
+        </p>
+        <div className="flex flex-col items-center mb-4">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/6/66/Pendulum_gravity.svg"
+            alt="Diagram of a simple pendulum"
+            className="w-72 h-auto mb-2 border rounded shadow"
+          />
+          <span className="text-xs text-gray-500">
+            Figure: Simple pendulum diagram.{" "}
+            <sup>
+              <a href="#pendulum-wiki-footnote" className="underline">
+                [1]
+              </a>
+            </sup>
+          </span>
+        </div>
+        <h3 className="text-xl font-bold">
+          Arriving at the motion of a pendulum
+        </h3>
+        <p>
+          The motion of the pendulum is defined by the angle{" "}
+          <InlineMath>{"\\theta"}</InlineMath>, in radians. The distance moved
+          by the bob is given by the arc length{" "}
+          <InlineMath>{"s=l \\theta"}</InlineMath>, where l is the rod length.
+          The angular velocity is the time derivative of distance, and the
+          angular acceleration the time derivative of the velocity:
+        </p>
+        <BlockMath math={"v_{tan} = \\frac{ds}{dt}=l \\frac{d\\theta}{dt}"} />
+        <BlockMath
+          math={"\\alpha_{tan} = \\frac{dv}{dt}=l \\frac{d^2\\theta}{dt^2}"}
+        />
+        <p>
+          Using the previous force equation, we finally arrive at the second
+          order differntial equation describing the motion of a simple pendulum:
         </p>
         <BlockMath
           math={
-            "\\alpha = \\frac{\\vec F}{m} \\Rightarrow \\vec F= \\frac{m}{\\alpha}"
+            "-mg \\sin(\\theta) = ml \\frac{d^2\\theta}{dt^2} \\Leftrightarrow"
           }
         />
+        <BlockMath
+          math={"\\frac{d^2\\theta}{dt^2} + \\frac{g}{l} \\sin(\\theta) = 0"}
+        />
+        <p>
+          Because of the sine function, this is a non-linear second order
+          differential equation. It is difficult to solve, and a solution can
+          not be written using elementary functions (continous in their domain).
+          Thus for practical purposes, numerical methods like Euler or
+          Runge-Kutta methods can be used to simulate the pendulum motion.
+        </p>
       </section>
+      <footer className="max-w-xl mx-auto mt-2 text-xs text-gray-500">
+        <span id="pendulum-wiki-footnote">
+          [1] Image source:{" "}
+          <a
+            href="https://en.wikipedia.org/wiki/Pendulum_(mechanics)#/media/File:Pendulum_gravity.svg"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline"
+          >
+            Wikipedia - Pendulum (mechanics)
+          </a>
+        </span>
+      </footer>
     </main>
   );
 
@@ -50,7 +129,7 @@ export default function Home() {
       const canvas = canvasRef.current;
       if (!canvas) return;
       const ctx = canvas.getContext("2d");
-      let theta = Math.PI / 4; // initial angle (45 deg)
+      let theta = (170 * Math.PI) / 180; // initial angle, degrees to radians
       let omega = 0; // initial angular velocity
       const scale = 100; // 1 m = 100 pixels
       const L_meters = 1.5; // physics length in meters for calculations
