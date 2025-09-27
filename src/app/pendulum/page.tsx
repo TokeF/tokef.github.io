@@ -8,8 +8,10 @@ import "katex/dist/katex.min.css";
 import { BlockMath, InlineMath } from "react-katex";
 
 export default function Home() {
-  const [angle, setAngle] = useState(170); // degrees
+  const [angle, setAngle] = useState(45); // degrees
   const [rodLength, setRodLength] = useState(1.5); // meters
+  const [gravity, setGravity] = useState(9.81); // m/s^2, default Earth
+  const [dampening, setDampening] = useState(0); // friction coefficient
 
   return (
     <main
@@ -23,7 +25,12 @@ export default function Home() {
     >
       <h2 className="text-2xl font-bold">Pendulum motion simulation</h2>
       <div className="flex flex-row gap-8 items-start w-full justify-center mt-4">
-        <SetupCanvas angle={angle} rodLength={rodLength} />
+        <SetupCanvas
+          angle={angle}
+          rodLength={rodLength}
+          gravity={gravity}
+          dampening={dampening}
+        />
         <form
           className="flex flex-col gap-4 p-4 bg-gray-100 rounded shadow min-w-[220px]"
           onSubmit={(e) => e.preventDefault()}
@@ -49,6 +56,32 @@ export default function Home() {
               onChange={(e) => setRodLength(Number(e.target.value))}
               className="mt-1 p-1 border rounded"
             />
+          </label>
+          <label className="flex flex-col text-sm font-medium">
+            Gravity
+            <select
+              className="mt-1 p-1 border rounded"
+              value={gravity}
+              onChange={(e) => setGravity(Number(e.target.value))}
+            >
+              <option value={9.81}>Earth (9.81 m/s²)</option>
+              <option value={1.62}>Moon (1.62 m/s²)</option>
+              <option value={3.71}>Mars (3.71 m/s²)</option>
+              <option value={24.79}>Jupiter (24.79 m/s²)</option>
+              <option value={274}>Sun (274 m/s²)</option>
+            </select>
+          </label>
+          <label className="flex flex-col text-sm font-medium">
+            Dampening coefficient
+            <input
+              type="number"
+              min="0"
+              step="0.01"
+              value={dampening}
+              onChange={(e) => setDampening(Number(e.target.value))}
+              className="mt-1 p-1 border rounded"
+            />
+            <span className="text-xs text-gray-500">0 = no friction</span>
           </label>
         </form>
       </div>
@@ -158,9 +191,13 @@ export default function Home() {
   function SetupCanvas({
     angle,
     rodLength,
+    gravity,
+    dampening,
   }: {
     angle: number;
     rodLength: number;
+    gravity: number;
+    dampening: number;
   }) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     useEffect(() => {
@@ -169,9 +206,9 @@ export default function Home() {
       const ctx = canvas.getContext("2d");
       let theta = (angle * Math.PI) / 180; // initial angle, degrees to radians
       let omega = 0; // initial angular velocity
-      const scale = 75; // 1 m = 100 pixels
+      const scale = 100; // 1 m = 100 pixels
       const L_meters = rodLength; // physics length in meters for calculations
-      const g = 9.81; // gravity (m/s^2)
+      const g = gravity; // gravity (m/s^2)
       const mass = 0.1; // mass of the bob (kg)
       const fps = 60;
       const dt = 1 / fps;
@@ -180,11 +217,12 @@ export default function Home() {
 
       function update() {
         const L_pixels = L_meters * scale; // recalc in case rodLength changes
-        // Euler method for pendulum motion
+        // Euler method for pendulum motion with friction
         // Torque = -m * g * L * sin(theta)
         // theta = Torque / (m * L^2) = -(g / L) * sin(theta)
+        // Add friction: -dampening * omega
         const torque = -mass * g * L_meters * Math.sin(theta);
-        const alpha = torque / (mass * L_meters * L_meters); // angular acceleration
+        const alpha = torque / (mass * L_meters * L_meters) - dampening * omega; // angular acceleration with friction
         omega += alpha * dt; // update angular velocity
         theta += omega * dt; // update angle
 
@@ -224,7 +262,7 @@ export default function Home() {
       }
 
       update();
-    }, [angle, rodLength]);
+    }, [angle, rodLength, gravity, dampening]);
 
     return (
       <canvas
