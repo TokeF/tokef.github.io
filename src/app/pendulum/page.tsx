@@ -23,7 +23,9 @@ export default function Home() {
         minHeight: "50vh",
       }}
     >
-      <h2 className="text-2xl font-bold">Pendulum motion simulation</h2>
+      <h2 className="text-3xl font-bold text-white">
+        Pendulum motion simulation
+      </h2>
       <div className="flex flex-row gap-8 items-start w-full justify-center mt-4">
         <SetupCanvas
           angle={angle}
@@ -244,20 +246,20 @@ export default function Home() {
         ctx.beginPath();
         ctx.moveTo(pivot.x, pivot.y);
         ctx.lineTo(xBob, yBob);
-        ctx.strokeStyle = "gray";
+        ctx.strokeStyle = "#3C3D37";
         ctx.lineWidth = 2;
         ctx.stroke();
 
         // Pivot point
         ctx.beginPath();
         ctx.arc(pivot.x, pivot.y, 5, 0, 2 * Math.PI);
-        ctx.fillStyle = "green";
+        ctx.fillStyle = "#697565";
         ctx.fill();
 
         // Moving circle
         ctx.beginPath();
         ctx.arc(xBob, yBob, 10, 0, 2 * Math.PI);
-        ctx.fillStyle = "black";
+        ctx.fillStyle = "#1E201E";
         ctx.fill();
       }
 
@@ -269,7 +271,7 @@ export default function Home() {
         ref={canvasRef}
         width="600"
         height="600"
-        style={{ background: "white", border: "1px solid red" }}
+        style={{ backgroundColor: "#ECDFCC", border: "1px solid black" }}
       ></canvas>
     );
   }
