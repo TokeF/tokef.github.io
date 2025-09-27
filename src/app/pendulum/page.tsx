@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // Need KaTeX CSS for built in styling
 import "katex/dist/katex.min.css";
@@ -8,6 +8,9 @@ import "katex/dist/katex.min.css";
 import { BlockMath, InlineMath } from "react-katex";
 
 export default function Home() {
+  const [angle, setAngle] = useState(170); // degrees
+  const [rodLength, setRodLength] = useState(1.5); // meters
+
   return (
     <main
       style={{
@@ -19,7 +22,36 @@ export default function Home() {
       }}
     >
       <h2 className="text-2xl font-bold">Pendulum motion simulation</h2>
-      <SetupCanvas />
+      <div className="flex flex-row gap-8 items-start w-full justify-center mt-4">
+        <SetupCanvas angle={angle} rodLength={rodLength} />
+        <form
+          className="flex flex-col gap-4 p-4 bg-gray-100 rounded shadow min-w-[220px]"
+          onSubmit={(e) => e.preventDefault()}
+        >
+          <label className="flex flex-col text-sm font-medium">
+            Initial angle (degrees)
+            <input
+              type="number"
+              min="0"
+              max="180"
+              value={angle}
+              onChange={(e) => setAngle(Number(e.target.value))}
+              className="mt-1 p-1 border rounded"
+            />
+          </label>
+          <label className="flex flex-col text-sm font-medium">
+            Rod length (meters)
+            <input
+              type="number"
+              min="0.1"
+              step="0.1"
+              value={rodLength}
+              onChange={(e) => setRodLength(Number(e.target.value))}
+              className="mt-1 p-1 border rounded"
+            />
+          </label>
+        </form>
+      </div>
       <section className="max-w-xl mt-8 p-4 bg-gray-50 rounded-lg shadow">
         <h3 className="text-xl font-bold">What is this?</h3>
         <p>
@@ -100,10 +132,11 @@ export default function Home() {
         />
         <p>
           Because of the sine function, this is a non-linear second order
-          differential equation. It is difficult to solve, and a solution can
-          not be written using elementary functions (continous in their domain).
-          Thus for practical purposes, numerical methods like Euler or
-          Runge-Kutta methods can be used to simulate the pendulum motion.
+          ordinary differential equation. It is difficult to solve, and a
+          solution can not be written using elementary functions (continous in
+          their domain). Thus for practical purposes, numerical methods like
+          Euler or Runge-Kutta methods can be used to simulate the pendulum
+          motion.
         </p>
       </section>
       <footer className="max-w-xl mx-auto mt-2 text-xs text-gray-500">
@@ -122,18 +155,22 @@ export default function Home() {
     </main>
   );
 
-  function SetupCanvas() {
+  function SetupCanvas({
+    angle,
+    rodLength,
+  }: {
+    angle: number;
+    rodLength: number;
+  }) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
-
     useEffect(() => {
       const canvas = canvasRef.current;
       if (!canvas) return;
       const ctx = canvas.getContext("2d");
-      let theta = (170 * Math.PI) / 180; // initial angle, degrees to radians
+      let theta = (angle * Math.PI) / 180; // initial angle, degrees to radians
       let omega = 0; // initial angular velocity
-      const scale = 100; // 1 m = 100 pixels
-      const L_meters = 1.5; // physics length in meters for calculations
-      const L_pixels = L_meters * scale; // scaled for drawing
+      const scale = 75; // 1 m = 100 pixels
+      const L_meters = rodLength; // physics length in meters for calculations
       const g = 9.81; // gravity (m/s^2)
       const mass = 0.1; // mass of the bob (kg)
       const fps = 60;
@@ -142,6 +179,7 @@ export default function Home() {
       const bob = { x: canvas.width / 2, y: canvas.height / 2 };
 
       function update() {
+        const L_pixels = L_meters * scale; // recalc in case rodLength changes
         // Euler method for pendulum motion
         // Torque = -m * g * L * sin(theta)
         // theta = Torque / (m * L^2) = -(g / L) * sin(theta)
@@ -150,11 +188,11 @@ export default function Home() {
         omega += alpha * dt; // update angular velocity
         theta += omega * dt; // update angle
 
-        draw();
+        draw(L_pixels);
         requestAnimationFrame(update);
       }
 
-      function draw() {
+      function draw(L_pixels: number) {
         if (!ctx) return;
         if (!canvas) return;
 
@@ -186,16 +224,7 @@ export default function Home() {
       }
 
       update();
-    }, []);
-
-    return (
-      <canvas
-        ref={canvasRef}
-        width="600"
-        height="600"
-        style={{ background: "white", border: "1px solid red" }}
-      ></canvas>
-    );
+    }, [angle, rodLength]);
 
     return (
       <canvas
