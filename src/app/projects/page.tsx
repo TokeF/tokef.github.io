@@ -13,7 +13,7 @@ const hobbyProjects = [
     description:
       "React native app to keep track of scores in the Whist card game.",
     image: "/assets/whist.gif",
-    link: "https://github.com/yourusername/recipe-finder",
+    link: "https://github.com/TokeF/whist-points",
   },
   {
     title: "Pendulum Simulation",
