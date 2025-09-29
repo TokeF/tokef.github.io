@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Home() {
   return (
     <div>
@@ -22,7 +24,7 @@ export default function Home() {
           </div>
         </div>
         <div className="mt-[45px]">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 py-8 w-full max-w-[1100px] mx-auto px-30">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 py-8 w-full max-w-[1100px] mx-auto px-10">
             {[
               {
                 href: "/portfolio",
@@ -55,9 +57,10 @@ export default function Home() {
                 className="flex flex-col items-center justify-center bg-white rounded-xl font-bold text-2xl shadow-md hover:scale-[1.02] transition overflow-hidden min-h-[320px] aspect-[1/1] relative"
                 style={{ textDecoration: "none" }}
               >
-                <img
+                <Image
                   src={tile.img}
                   alt={tile.alt}
+                  fill
                   className="absolute inset-0 w-full h-full object-cover blur-sm opacity-80 z-0"
                   style={{ filter: "blur(4px)", objectFit: "cover" }}
                 />

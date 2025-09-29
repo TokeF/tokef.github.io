@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 // Need KaTeX CSS for built in styling
 import "katex/dist/katex.min.css";
@@ -100,7 +101,7 @@ export default function Home() {
         <p>
           Consider an ideal mathematical model of a pendulum. A point mass, is
           suspended from a fixed pivot point by a rigid, weightless rod.
-          Newton's second law of motion can then be used to find the force
+          Newton&apos;s second law of motion can then be used to find the force
           acting on the mass. The law states that &quot;The net force{" "}
           <InlineMath>{"\\vec F"}</InlineMath> on an object is proportional to
           the acceleration <InlineMath>{"\\alpha"}</InlineMath> and the mass m
@@ -124,7 +125,7 @@ export default function Home() {
           this force acts to restore the pendulum to its equilibrium position.
         </p>
         <div className="flex flex-col items-center mb-4">
-          <img
+          <Image
             src="https://upload.wikimedia.org/wikipedia/commons/6/66/Pendulum_gravity.svg"
             alt="Diagram of a simple pendulum"
             className="w-72 h-auto mb-2 border rounded shadow"
