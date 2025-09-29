@@ -128,7 +128,9 @@ export default function Home() {
           <Image
             src="https://upload.wikimedia.org/wikipedia/commons/6/66/Pendulum_gravity.svg"
             alt="Diagram of a simple pendulum"
-            className="w-72 h-auto mb-2 border rounded shadow"
+            width={200}
+            height={20}
+            className="h-auto mb-2 border rounded shadow"
           />
           <span className="text-xs text-gray-500">
             Figure: Simple pendulum diagram.{" "}
