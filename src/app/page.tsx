@@ -21,94 +21,51 @@ export default function Home() {
             <div className="flex-1"></div>
           </div>
         </div>
-        <div className="mt-[45px]" style={{ background: "var(--color-paper)" }}>
-          <div className="flex flex-wrap justify-center items-center gap-8 py-8 w-full max-w-[1100px] mx-auto">
-            {/* First tile: Portfolio link */}
-            <a
-              href="/portfolio"
-              className="flex flex-col items-center justify-center bg-white rounded-xl font-bold text-2xl shadow-md hover:scale-[1.02] transition overflow-hidden"
-              style={{
-                width: "48%",
-                minWidth: "400px",
-                height: "480px",
-                textDecoration: "none",
-                position: "relative",
-              }}
-            >
-              <img
-                src="/assets/portfolio.png"
-                alt="Portfolio preview"
-                className="absolute inset-0 w-full h-full object-cover blur-sm opacity-80 z-0"
-                style={{ filter: "blur(4px)", objectFit: "cover" }}
-              />
-              <span className="relative z-10 text-black drop-shadow-lg">
-                Portfolio
-              </span>
-            </a>
-            {/* Second tile: Pendulum link with blurred image */}
-            <a
-              href="/pendulum"
-              className="flex flex-col items-center justify-center bg-white rounded-xl font-bold text-2xl shadow-md hover:scale-[1.02] transition overflow-hidden"
-              style={{
-                width: "48%",
-                minWidth: "400px",
-                height: "480px",
-                textDecoration: "none",
-                position: "relative",
-              }}
-            >
-              <img
-                src="/assets/pendulum2.png"
-                alt="Pendulum simulation preview"
-                className="absolute inset-0 w-full h-full object-cover blur-sm opacity-80 z-0"
-                style={{ filter: "blur(4px)", objectFit: "cover" }}
-              />
-              <span className="relative z-10 text-black drop-shadow-lg">
-                Pendulum Simulation
-              </span>
-            </a>
-            <a
-              href="/projects"
-              className="flex flex-col items-center justify-center bg-white rounded-xl font-bold text-2xl shadow-md hover:scale-[1.02] transition overflow-hidden"
-              style={{
-                width: "48%",
-                minWidth: "400px",
-                height: "480px",
-                textDecoration: "none",
-                position: "relative",
-              }}
-            >
-              <img
-                src="/assets/projects.png"
-                alt="colab"
-                className="absolute inset-0 w-full h-full object-cover blur-sm opacity-80 z-0"
-                style={{ filter: "blur(4px)", objectFit: "cover" }}
-              />
-              <span className="relative z-10 text-black drop-shadow-lg">
-                Projects
-              </span>
-            </a>
-            <a
-              href="/contact"
-              className="flex flex-col items-center justify-center bg-white rounded-xl font-bold text-2xl shadow-md hover:scale-[1.02] transition overflow-hidden"
-              style={{
-                width: "48%",
-                minWidth: "400px",
-                height: "480px",
-                textDecoration: "none",
-                position: "relative",
-              }}
-            >
-              <img
-                src="/assets/collaboration.png"
-                alt="colab"
-                className="absolute inset-0 w-full h-full object-cover blur-sm opacity-80 z-0"
-                style={{ filter: "blur(4px)", objectFit: "cover" }}
-              />
-              <span className="relative z-10 text-black drop-shadow-lg">
-                Reach Out 🤝
-              </span>
-            </a>
+        <div className="mt-[45px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 py-8 w-full max-w-[1100px] mx-auto px-30">
+            {[
+              {
+                href: "/portfolio",
+                img: "/assets/portfolio.png",
+                alt: "Portfolio preview",
+                label: "Portfolio",
+              },
+              {
+                href: "/pendulum",
+                img: "/assets/pendulum2.png",
+                alt: "Pendulum simulation preview",
+                label: "Pendulum Simulation",
+              },
+              {
+                href: "/projects",
+                img: "/assets/projects.png",
+                alt: "Projects preview",
+                label: "Projects",
+              },
+              {
+                href: "/contact",
+                img: "/assets/collaboration.png",
+                alt: "Contact preview",
+                label: "Reach Out 🤝",
+              },
+            ].map((tile) => (
+              <a
+                key={tile.href}
+                href={tile.href}
+                className="flex flex-col items-center justify-center bg-white rounded-xl font-bold text-2xl shadow-md hover:scale-[1.02] transition overflow-hidden min-h-[320px] aspect-[1/1] relative"
+                style={{ textDecoration: "none" }}
+              >
+                <img
+                  src={tile.img}
+                  alt={tile.alt}
+                  className="absolute inset-0 w-full h-full object-cover blur-sm opacity-80 z-0"
+                  style={{ filter: "blur(4px)", objectFit: "cover" }}
+                />
+                <span className="relative z-10 text-black drop-shadow-lg">
+                  {tile.label}
+                </span>
+              </a>
+            ))}
           </div>
         </div>
       </main>
