@@ -24,19 +24,62 @@ export default function Home() {
         </div>
         <div className="mt-[45px]" style={{ background: "var(--color-paper)" }}>
           <div className="flex flex-wrap justify-center items-center gap-8 py-8 w-full max-w-[1100px] mx-auto">
-            {[1, 2, 3, 4].map((n) => (
-              <div
-                key={n}
-                className="flex items-center justify-center bg-white rounded-xl font-bold text-2xl shadow-md"
-                style={{
-                  width: "48%",
-                  minWidth: "400px",
-                  height: "480px",
-                }}
-              >
-                {`Place holder ${n}`}
-              </div>
-            ))}
+            {/* First tile: Portfolio link */}
+            <a
+              href="/projects"
+              className="flex items-center justify-center bg-white rounded-xl font-bold text-2xl shadow-md hover:scale-[1.02] transition"
+              style={{
+                width: "48%",
+                minWidth: "400px",
+                height: "480px",
+                textDecoration: "none",
+              }}
+            >
+              Portfolio
+            </a>
+            {/* Second tile: Pendulum link with blurred image */}
+            <a
+              href="/pendulum"
+              className="flex flex-col items-center justify-center bg-white rounded-xl font-bold text-2xl shadow-md hover:scale-[1.02] transition overflow-hidden"
+              style={{
+                width: "48%",
+                minWidth: "400px",
+                height: "480px",
+                textDecoration: "none",
+                position: "relative",
+              }}
+            >
+              <img
+                src="/assets/pendulum.png"
+                alt="Pendulum simulation preview"
+                className="absolute inset-0 w-full h-full object-cover blur-sm opacity-80 z-0"
+                style={{ filter: "blur(4px)", objectFit: "cover" }}
+              />
+              <span className="relative z-10 text-white drop-shadow-lg">
+                Pendulum Simulation
+              </span>
+            </a>
+            {/* Third and fourth tiles: placeholders */}
+            <div
+              className="flex items-center justify-center bg-white rounded-xl font-bold text-2xl shadow-md"
+              style={{
+                width: "48%",
+                minWidth: "400px",
+                height: "480px",
+              }}
+            >
+              Place holder 3
+            </div>
+            <div
+              className="flex items-center justify-center bg-white rounded-xl font-bold text-2xl shadow-md"
+              style={{
+                width: "48%",
+                minWidth: "400px",
+                height: "480px",
+              }}
+            >
+              Place holder 4
+            </div>
           </div>
         </div>
       </main>
