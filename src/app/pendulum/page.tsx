@@ -90,32 +90,32 @@ export default function Home() {
       <section className="max-w-xl mt-8 p-4 bg-gray-50 rounded-lg shadow">
         <h3 className="text-xl font-bold">What is this?</h3>
         <p>
-          This interactive canvas shows a simple pendulum, modeled using the
-          Euler method for numerical integration.
+          This interactive canvas demonstrates a simple pendulum, modeled using
+          the Euler method for numerical integration.
         </p>
 
         <h3 className="text-xl font-bold">
           Deriving the physics of pendulum motion
         </h3>
         <p>
-          Consider an ideal mathematical model af a pendulum. A point mass,
-          called a bob, is suspended from a fixed pivot point via a rigid
-          weightless rod. Newtons second law of motion, can then be used to find
-          the force acting on the mass. The law states that &quot;The net force{" "}
-          <InlineMath>{"\\vec F"}</InlineMath> on an object, is proportional to
-          the accelaration <InlineMath>{"\\alpha"}</InlineMath> and the mass m
+          Consider an ideal mathematical model of a pendulum. A point mass, is
+          suspended from a fixed pivot point by a rigid, weightless rod.
+          Newton's second law of motion can then be used to find the force
+          acting on the mass. The law states that &quot;The net force{" "}
+          <InlineMath>{"\\vec F"}</InlineMath> on an object is proportional to
+          the acceleration <InlineMath>{"\\alpha"}</InlineMath> and the mass m
           of the object.&quot; Formulated as:
         </p>
         <BlockMath math={"\\vec F = m \\alpha"} />
         <p>
-          Two forces act on the bob: The tension in the rod, and the force of
-          gravity. The tension force exerted by the rod, is cancelled by the
-          part of gravity acting along the rod. This is easily seen in the case
-          of the pendulum being at rest in the vertical position. Because the
-          the bob is restricted to move in a circle, the gravitational force can
-          be split into a tangential and radial component. Only the tangential
-          component is of interest, since the radial is cancelled by tension,
-          and can be derived using trigonometry:
+          Two forces act on the bob: the tension in the rod and the force of
+          gravity. The tension force exerted by the rod is cancelled by the
+          component of gravity acting along the rod. This is easily seen when
+          the pendulum is at rest in the vertical position. Because the bob is
+          restricted to move in a circle, the gravitational force can be split
+          into tangential and radial components. Only the tangential component
+          is of interest, since the radial is cancelled by tension, and can be
+          derived using trigonometry:
         </p>
         <BlockMath math={"F_{tan} = -mg \\sin(\\theta) = m\\alpha"} />
         <p>
@@ -147,7 +147,7 @@ export default function Home() {
           by the bob is given by the arc length{" "}
           <InlineMath>{"s=l \\theta"}</InlineMath>, where l is the rod length.
           The angular velocity is the time derivative of distance, and the
-          angular acceleration the time derivative of the velocity:
+          angular acceleration is the time derivative of the velocity:
         </p>
         <BlockMath math={"v_{tan} = \\frac{ds}{dt}=l \\frac{d\\theta}{dt}"} />
         <BlockMath
@@ -155,7 +155,8 @@ export default function Home() {
         />
         <p>
           Using the previous force equation, we finally arrive at the second
-          order differntial equation describing the motion of a simple pendulum:
+          order differential equation describing the motion of a simple
+          pendulum:
         </p>
         <BlockMath
           math={
@@ -168,8 +169,8 @@ export default function Home() {
         <p>
           Because of the sine function, this is a non-linear second order
           ordinary differential equation. It is difficult to solve, and a
-          solution can not be written using elementary functions (continous in
-          their domain). Thus for practical purposes, numerical methods like
+          solution cannot be written using elementary functions (continuous in
+          their domain). Thus, for practical purposes, numerical methods like
           Euler or Runge-Kutta methods can be used to simulate the pendulum
           motion.
         </p>

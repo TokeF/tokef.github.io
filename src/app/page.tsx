@@ -58,7 +58,7 @@ export default function Home() {
               }}
             >
               <img
-                src="/assets/pendulum.png"
+                src="/assets/pendulum2.png"
                 alt="Pendulum simulation preview"
                 className="absolute inset-0 w-full h-full object-cover blur-sm opacity-80 z-0"
                 style={{ filter: "blur(4px)", objectFit: "cover" }}

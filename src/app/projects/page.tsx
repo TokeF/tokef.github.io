@@ -2,36 +2,41 @@ import Image from "next/image";
 
 const hobbyProjects = [
   {
-    title: "Weather Dashboard",
+    title: "Word of the Day",
     description:
-      "A real-time weather dashboard using OpenWeatherMap API and React.",
-    image: "/assets/collaboration.png",
-    link: "https://github.com/yourusername/weather-dashboard",
+      "A fun react native mobile app, displaying a new gen-z word every day.",
+    image: "/assets/projects.png",
+    link: "https://github.com/TokeF/word-of-day",
   },
   {
-    title: "Recipe Finder",
+    title: "Whist point calculator",
     description:
-      "Find recipes by ingredients. Built with Next.js and Spoonacular API.",
-    image: "/assets/collaboration.png",
+      "React native app to keep track of scores in the Whist card game.",
+    image: "/assets/whist.gif",
     link: "https://github.com/yourusername/recipe-finder",
+  },
+  {
+    title: "Pendulum Simulation",
+    description: "Simulation of pendulum motion. I have background in physics.",
+    image: "/assets/pendulum2.png",
+    link: "/pendulum",
   },
 ];
 
 export default function HobbyProjects() {
   return (
     <main className="max-w-5xl mx-auto py-12 px-4">
-      <h1 className="text-3xl font-bold mb-2 text-center">
+      <h1 className="text-3xl text-white font-bold mb-2 text-center">
         Check out some of my hobby projects
       </h1>
-      <p className="text-lg text-gray-600 mb-8 text-center">
-        Here are a few fun projects I’ve built in my spare time. Click to view
-        the code or try them out!
+      <p className="text-l text-white mb-8 text-center">
+        For more details click the button!
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {hobbyProjects.map((project) => (
           <div
             key={project.title}
-            className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col"
+            className="bg-[#ecdfcc] rounded-xl shadow-md overflow-hidden flex flex-col"
           >
             <Image
               src={project.image}
