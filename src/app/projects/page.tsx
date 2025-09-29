@@ -21,6 +21,19 @@ const hobbyProjects = [
     image: "/assets/pendulum2.png",
     link: "/pendulum",
   },
+  {
+    title: "Personal Website",
+    description: "To display portfolio and showcase various projects.",
+    image: "/assets/webpage.png",
+    link: "/pendulum",
+  },
+  {
+    title: "Knight Launcher Game",
+    description:
+      'Web-based mini-game where you launch a knight from a ballista across a battlefield. The purpose is simply to try out "vibe" coding. Work in progress...',
+    image: "/assets/knightlauncher.png",
+    link: "/knight-launcher",
+  },
 ];
 
 export default function HobbyProjects() {
