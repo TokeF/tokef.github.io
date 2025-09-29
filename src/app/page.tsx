@@ -11,9 +11,8 @@ export default function Home() {
                   Freelance Software Engineer
                 </h1>{" "}
                 <p className="text-2xl">
-                  I create{" "}
-                  <span className="text-[#FFE066]">
-                    scalable robust solutions
+                  <span className="bg-gradient-to-r from-[#AE445A] to-[#4B4376] bg-clip-text text-transparent">
+                    Scalable robust solutions
                   </span>{" "}
                   across the stack.
                 </p>
@@ -26,7 +25,7 @@ export default function Home() {
           <div className="flex flex-wrap justify-center items-center gap-8 py-8 w-full max-w-[1100px] mx-auto">
             {/* First tile: Portfolio link */}
             <a
-              href="/projects"
+              href="/portfolio"
               className="flex flex-col items-center justify-center bg-white rounded-xl font-bold text-2xl shadow-md hover:scale-[1.02] transition overflow-hidden"
               style={{
                 width: "48%",
@@ -38,12 +37,12 @@ export default function Home() {
             >
               <img
                 src="/assets/portfolio.png"
-                alt="Pendulum simulation preview"
+                alt="Portfolio preview"
                 className="absolute inset-0 w-full h-full object-cover blur-sm opacity-80 z-0"
                 style={{ filter: "blur(4px)", objectFit: "cover" }}
               />
               <span className="relative z-10 text-black drop-shadow-lg">
-                Portfolio{" "}
+                Portfolio
               </span>
             </a>
             {/* Second tile: Pendulum link with blurred image */}
@@ -68,27 +67,48 @@ export default function Home() {
                 Pendulum Simulation
               </span>
             </a>
-            {/* Third and fourth tiles: placeholders */}
-            <div
-              className="flex items-center justify-center bg-white rounded-xl font-bold text-2xl shadow-md"
+            <a
+              href="/projects"
+              className="flex flex-col items-center justify-center bg-white rounded-xl font-bold text-2xl shadow-md hover:scale-[1.02] transition overflow-hidden"
               style={{
                 width: "48%",
                 minWidth: "400px",
                 height: "480px",
+                textDecoration: "none",
+                position: "relative",
               }}
             >
-              Place holder 3
-            </div>
-            <div
-              className="flex items-center justify-center bg-white rounded-xl font-bold text-2xl shadow-md"
+              <img
+                src="/assets/projects.png"
+                alt="colab"
+                className="absolute inset-0 w-full h-full object-cover blur-sm opacity-80 z-0"
+                style={{ filter: "blur(4px)", objectFit: "cover" }}
+              />
+              <span className="relative z-10 text-black drop-shadow-lg">
+                Projects
+              </span>
+            </a>
+            <a
+              href="/contact"
+              className="flex flex-col items-center justify-center bg-white rounded-xl font-bold text-2xl shadow-md hover:scale-[1.02] transition overflow-hidden"
               style={{
                 width: "48%",
                 minWidth: "400px",
                 height: "480px",
+                textDecoration: "none",
+                position: "relative",
               }}
             >
-              Place holder 4
-            </div>
+              <img
+                src="/assets/collaboration.png"
+                alt="colab"
+                className="absolute inset-0 w-full h-full object-cover blur-sm opacity-80 z-0"
+                style={{ filter: "blur(4px)", objectFit: "cover" }}
+              />
+              <span className="relative z-10 text-black drop-shadow-lg">
+                Reach Out 🤝
+              </span>
+            </a>
           </div>
         </div>
       </main>
