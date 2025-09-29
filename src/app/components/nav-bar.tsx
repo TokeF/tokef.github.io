@@ -23,13 +23,15 @@ export default function NavBar() {
       }`}
       style={{ position: "sticky", top: 0, zIndex: 50 }}
     >
-      <div className="text-xl font-bold">Toke Frederiksen</div>
+      <div className="text-xl font-bold">
+        <Link href="/">Toke Frederiksen</Link>
+      </div>
       <div className="flex items-center gap-6">
         <Link href="/" className="hover:text-gray-300">
           Home
         </Link>
-        <Link href="/cv" className="hover:text-gray-300">
-          CV
+        <Link href="/portfolio" className="hover:text-gray-300">
+          Portfolio
         </Link>
         <Link href="/projects" className="hover:text-gray-300">
           Projects

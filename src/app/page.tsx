@@ -27,15 +27,24 @@ export default function Home() {
             {/* First tile: Portfolio link */}
             <a
               href="/projects"
-              className="flex items-center justify-center bg-white rounded-xl font-bold text-2xl shadow-md hover:scale-[1.02] transition"
+              className="flex flex-col items-center justify-center bg-white rounded-xl font-bold text-2xl shadow-md hover:scale-[1.02] transition overflow-hidden"
               style={{
                 width: "48%",
                 minWidth: "400px",
                 height: "480px",
                 textDecoration: "none",
+                position: "relative",
               }}
             >
-              Portfolio
+              <img
+                src="/assets/portfolio.png"
+                alt="Pendulum simulation preview"
+                className="absolute inset-0 w-full h-full object-cover blur-sm opacity-80 z-0"
+                style={{ filter: "blur(4px)", objectFit: "cover" }}
+              />
+              <span className="relative z-10 text-black drop-shadow-lg">
+                Portfolio{" "}
+              </span>
             </a>
             {/* Second tile: Pendulum link with blurred image */}
             <a
@@ -55,7 +64,7 @@ export default function Home() {
                 className="absolute inset-0 w-full h-full object-cover blur-sm opacity-80 z-0"
                 style={{ filter: "blur(4px)", objectFit: "cover" }}
               />
-              <span className="relative z-10 text-white drop-shadow-lg">
+              <span className="relative z-10 text-black drop-shadow-lg">
                 Pendulum Simulation
               </span>
             </a>
