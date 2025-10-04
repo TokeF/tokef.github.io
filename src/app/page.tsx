@@ -24,7 +24,7 @@ export default function Home() {
           </div>
         </div>
         <div className="mt-6 sm:mt-[45px]">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 py-6 sm:py-8 w-full max-w-[1100px] mx-auto px-2 sm:px-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 py-6 sm:py-8 w-full max-w-[1100px] mx-auto px-6 sm:px-10">
             {[
               {
                 href: "/portfolio",
