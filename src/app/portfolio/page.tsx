@@ -10,7 +10,7 @@ interface Project {
 const projects: Project[] = [
   {
     year: "2025",
-    title: "Generalized Data Structure",
+    title: "Standardized Data Pipeline",
     client: "Vestas Wind Systems",
     description:
       "Created a vendor-agnostic data pipeline and frontend management tool, allowing seamless integration of new data providers without altering core business logic.",
@@ -139,6 +139,22 @@ export default function Page() {
       <h1 className="text-3xl font-bold mb-8 text-center text-white">
         Portfolio
       </h1>
+      <p className="text-lg text-center text-gray-200 mb-8 max-w-2xl mx-auto">
+        Welcome to my portfolio, showcasing a selection of my professional
+        projects. As a software engineer with over five years of experience, I
+        specialize in building robust, cloud-native SaaS applications and
+        scalable systems that drive business success. I excel at leading
+        cross-functional teams, shaping architectural decisions, and delivering
+        innovative solutions with measurable impact. A few of my hobby projects
+        are available{" "}
+        <a
+          href="/projects"
+          className="underline text-blue-300 hover:text-blue-400"
+        >
+          here
+        </a>
+        .
+      </p>
       <div className="flex flex-col gap-8">
         {projects.map((project, idx) => (
           <div
