@@ -288,7 +288,7 @@ export default function Page() {
         <div className="mb-6">
           <label
             htmlFor="answer"
-            className="block text-sm font-medium text-black mb-2"
+            className="block text-sm font-medium text-gray-700 mb-2"
           >
             Your Answer:
           </label>
@@ -297,7 +297,7 @@ export default function Page() {
             id="answer"
             value={currentAnswer}
             onChange={(e) => setCurrentAnswer(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black"
             placeholder="Enter your answer..."
           />
         </div>
