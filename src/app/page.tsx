@@ -28,25 +28,25 @@ export default function Home() {
             {[
               {
                 href: "/portfolio",
-                img: "/assets/portfolio.png",
+                img: "/assets/project/portfolio.png",
                 alt: "Portfolio preview",
                 label: "Portfolio",
               },
               {
                 href: "/pendulum",
-                img: "/assets/pendulum2.png",
+                img: "/assets/project/pendulum2.png",
                 alt: "Pendulum simulation preview",
                 label: "Pendulum Simulation",
               },
               {
                 href: "/projects",
-                img: "/assets/projects.png",
+                img: "/assets/project/projects.png",
                 alt: "Projects preview",
                 label: "Projects",
               },
               {
                 href: "/contact",
-                img: "/assets/collaboration.png",
+                img: "/assets/project/collaboration.png",
                 alt: "Contact preview",
                 label: "Reach Out 🤝",
               },
