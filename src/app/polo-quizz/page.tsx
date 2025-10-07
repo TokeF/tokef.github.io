@@ -1,13 +1,13 @@
 "use client";
 import { useState } from "react";
 
-export interface QuizQuestion {
+interface QuizQuestion {
   image: string;
   description: string;
   answers: string[];
 }
 
-export const quizQuestions: QuizQuestion[] = [
+const quizQuestions: QuizQuestion[] = [
   {
     image: "/assets/polo-quizz/main01_part01.png",
     description:
@@ -22,6 +22,7 @@ export const quizQuestions: QuizQuestion[] = [
       "HALF TIME",
       "FULL TIME",
       "MATCH END",
+      "GAME END",
     ],
   },
   {
@@ -32,7 +33,7 @@ export const quizQuestions: QuizQuestion[] = [
   {
     image: "/assets/polo-quizz/main01_part04.png",
     description: "Repeated crossing of arms at thigh level.Palms open.",
-    answers: ["DISALLOWED GOAL"],
+    answers: ["DISALLOWED GOAL", "CANCELLED GOAL"],
   },
   {
     image: "/assets/polo-quizz/main01_part05.png",
@@ -41,28 +42,32 @@ export const quizQuestions: QuizQuestion[] = [
   },
   {
     image: "/assets/polo-quizz/main02_part01.png",
-    description: "",
-    answers: [],
+    description:
+      "Point open hand, arm extended along goal line. Other arm showing direction of play.",
+    answers: ["GOAL LINE THROW", "GOAL THROW"],
   },
   {
     image: "/assets/polo-quizz/main02_part02.png",
-    description: "",
-    answers: [],
+    description: "Form T with hands above head.",
+    answers: ["TIME OUT"],
   },
   {
     image: "/assets/polo-quizz/main02_part03.png",
-    description: "",
-    answers: [],
+    description:
+      "Arms extended forward at shoulder level, fists clenched,thumbs up.",
+    answers: ["REFEREE'S BALL"],
   },
   {
     image: "/assets/polo-quizz/main02_part04.png",
-    description: "",
-    answers: [],
+    description:
+      "Hold one arm up in the air fist clenched for the period of two seconds, and then point at the position where the free shot has to be taken. Other arm showing direction of play.",
+    answers: ["OBSTRUCTION"],
   },
   {
     image: "/assets/polo-quizz/main02_part05.png",
-    description: "",
-    answers: [],
+    description:
+      "Hold clenched fist against hip for the period of two seconds, and then point at the position where the free shot has to be taken. Other arm showing direction of play.",
+    answers: ["ILLEGAL KAYAK TACKLE", "ILLEGAL TACKLE"],
   },
   {
     image: "/assets/polo-quizz/main03_part01.png",
@@ -121,11 +126,40 @@ export default function Page() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
   const [currentAnswer, setCurrentAnswer] = useState("");
+  const [quizCompleted, setQuizCompleted] = useState(false);
+  const [showAnswers, setShowAnswers] = useState(false);
 
   // Filter out questions with empty descriptions for the quiz
   const validQuestions = quizQuestions.filter(
     (q) => q.description.trim() !== ""
   );
+
+  const isAnswerCorrect = (
+    userAnswer: string,
+    correctAnswers: string[]
+  ): boolean => {
+    const normalizedUserAnswer = userAnswer.trim().toLowerCase();
+    return correctAnswers.some(
+      (answer) => answer.toLowerCase().trim() === normalizedUserAnswer
+    );
+  };
+
+  // Calculate results
+  const getResults = () => {
+    let correctCount = 0;
+    const results = validQuestions.map((question, index) => {
+      const userAnswer = userAnswers[index] || "";
+      const isCorrect = isAnswerCorrect(userAnswer, question.answers);
+      if (isCorrect) correctCount++;
+      return {
+        question,
+        userAnswer,
+        isCorrect,
+        correctAnswers: question.answers,
+      };
+    });
+    return { results, correctCount, totalQuestions: validQuestions.length };
+  };
 
   const handleNext = () => {
     const updatedAnswers = [...userAnswers];
@@ -137,7 +171,7 @@ export default function Page() {
       setCurrentQuestion(currentQuestion + 1);
       setCurrentAnswer(userAnswers[currentQuestion + 1] || "");
     } else {
-      alert("Quiz completed!");
+      setQuizCompleted(true);
     }
   };
 
@@ -158,7 +192,168 @@ export default function Page() {
     setCurrentQuestion(0);
     setUserAnswers([]);
     setCurrentAnswer("");
+    setQuizCompleted(false);
+    setShowAnswers(false);
   };
+
+  const restartQuiz = () => {
+    setStarted(false);
+    setCurrentQuestion(0);
+    setUserAnswers([]);
+    setCurrentAnswer("");
+    setQuizCompleted(false);
+    setShowAnswers(false);
+  };
+
+  // Results screen
+  if (quizCompleted && !showAnswers) {
+    const { correctCount, totalQuestions } = getResults();
+    const percentage = Math.round((correctCount / totalQuestions) * 100);
+
+    return (
+      <main className="max-w-2xl mx-auto px-4 py-12">
+        <div className="bg-white rounded-xl shadow-lg p-8 text-center">
+          <h1 className="text-3xl font-bold mb-6 text-gray-900">
+            Quiz Complete!
+          </h1>
+
+          <div className="mb-8">
+            <div
+              className="text-6xl font-bold mb-4"
+              style={{
+                color:
+                  percentage >= 70
+                    ? "#10B981"
+                    : percentage >= 50
+                    ? "#F59E0B"
+                    : "#EF4444",
+              }}
+            >
+              {percentage}%
+            </div>
+            <p className="text-xl text-gray-700 mb-2">
+              You got{" "}
+              <span className="font-bold text-green-600">{correctCount}</span>{" "}
+              out of <span className="font-bold">{totalQuestions}</span>{" "}
+              questions correct!
+            </p>
+
+            {percentage >= 80 && (
+              <p className="text-lg text-green-600 font-semibold">
+                Excellent work! 🎉
+              </p>
+            )}
+            {percentage >= 60 && percentage < 80 && (
+              <p className="text-lg text-yellow-600 font-semibold">
+                Good job! 👍
+              </p>
+            )}
+            {percentage < 60 && (
+              <p className="text-lg text-red-600 font-semibold">
+                Is this Aarhus Lobster Level? Keep practicing! 📚
+              </p>
+            )}
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onClick={() => setShowAnswers(true)}
+              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              View Answers
+            </button>
+            <button
+              onClick={restartQuiz}
+              className="px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+            >
+              Try Again
+            </button>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  // Answer review screen
+  if (showAnswers) {
+    const { results } = getResults();
+
+    return (
+      <main className="max-w-4xl mx-auto px-4 py-12">
+        <div className="mb-8 text-center">
+          <h1 className="text-3xl font-bold mb-4 text-white">Answer Review</h1>
+          <button
+            onClick={restartQuiz}
+            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Take Quiz Again
+          </button>
+        </div>
+
+        <div className="space-y-6">
+          {results.map((result, index) => (
+            <div key={index} className="bg-white rounded-xl shadow-lg p-6">
+              <div className="flex flex-col md:flex-row gap-6">
+                <div className="md:w-1/3">
+                  <img
+                    src={result.question.image}
+                    alt={`Question ${index + 1}`}
+                    className="w-full h-auto rounded-lg shadow-md"
+                    style={{ maxHeight: "200px", objectFit: "contain" }}
+                  />
+                </div>
+
+                <div className="md:w-2/3">
+                  <h3 className="text-lg font-semibold mb-2 text-gray-900">
+                    Question {index + 1}
+                  </h3>
+                  <p className="text-gray-700 mb-4">
+                    <strong>Description:</strong> {result.question.description}
+                  </p>
+
+                  <div className="space-y-3">
+                    <div>
+                      <span className="text-sm font-medium text-gray-600">
+                        Your Answer:
+                      </span>
+                      <div
+                        className={`mt-1 p-2 rounded ${
+                          result.isCorrect
+                            ? "bg-green-100 text-green-800"
+                            : "bg-red-100 text-red-800"
+                        }`}
+                      >
+                        {result.userAnswer || "(No answer provided)"}
+                        {result.isCorrect ? " ✓" : " ✗"}
+                      </div>
+                    </div>
+
+                    <div>
+                      <span className="text-sm font-medium text-gray-600">
+                        Correct Answer(s):
+                      </span>
+                      <div className="mt-1 p-2 bg-green-50 text-green-800 rounded">
+                        {result.correctAnswers.join(", ")}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-8 text-center">
+          <button
+            onClick={restartQuiz}
+            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Take Quiz Again
+          </button>
+        </div>
+      </main>
+    );
+  }
 
   if (!started) {
     return (
