@@ -5,34 +5,41 @@ const hobbyProjects = [
     title: "Word of the Day",
     description:
       "A fun react native mobile app, displaying a new gen-z word every day.",
-    image: "/assets/projects.png",
+    image: "/assets/project/projects.png",
     link: "https://github.com/TokeF/word-of-day",
   },
   {
     title: "Whist point calculator",
     description:
       "React native app to keep track of scores in the Whist card game.",
-    image: "/assets/whist.gif",
+    image: "/assets/project/whist.gif",
     link: "https://github.com/TokeF/whist-points",
   },
   {
     title: "Pendulum Simulation",
     description: "Simulation of pendulum motion. I have background in physics.",
-    image: "/assets/pendulum2.png",
+    image: "/assets/project/pendulum2.png",
     link: "/pendulum",
   },
   {
     title: "Personal Website",
     description: "To display portfolio and showcase various projects.",
-    image: "/assets/webpage.png",
+    image: "/assets/project/webpage.png",
     link: "/pendulum",
   },
   {
     title: "Knight Launcher Game",
     description:
       'Web-based mini-game where you launch a knight from a ballista across a battlefield. The purpose is simply to try out "vibe" coding. Work in progress...',
-    image: "/assets/knightlauncher.png",
+    image: "/assets/project/knightlauncher.png",
     link: "/knight-launcher",
+  },
+  {
+    title: "Canoe Polo Quiz",
+    description:
+      "Interactive quiz to learn the official canoe polo referee signals.",
+    image: "/assets/project/polo-quiz.png",
+    link: "/polo-quiz",
   },
 ];
 
