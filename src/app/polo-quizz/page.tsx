@@ -164,7 +164,7 @@ export default function Page() {
     return (
       <main className="max-w-2xl mx-auto px-4 py-12">
         <h1 className="text-3xl font-bold mb-8 text-center text-white">
-          Water Polo Referee Signals Quiz
+          Canoe Polo Referee Signals Quiz
         </h1>
 
         <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
@@ -172,21 +172,19 @@ export default function Page() {
             About This Quiz
           </h2>
           <p className="text-gray-700 mb-4">
-            Test your knowledge of water polo referee signals! This quiz
-            features images of various referee gestures used in water polo
-            matches. Study each image carefully and identify the correct signal
-            being demonstrated.
+            Test your knowledge of canoe polo referee signals! This quiz
+            features images and descriptions of various referee gestures from
+            ICF 2025 Rule Book.
           </p>
           <p className="text-gray-700 mb-6">
             The quiz covers common referee signals including start/infringement
             calls, goal signals, time management, and various throw situations.
-            Perfect for players, coaches, and officials looking to improve their
-            understanding of the game.
+            Ideal for anyone wanting to improve their understanding of the game.
           </p>
           <p className="text-sm text-gray-600 mb-6">
             <strong>Instructions:</strong> Look at each image and description,
-            then type your answer in the text field. Multiple correct answers
-            may be accepted for each question.
+            then type your answer in English in the text field. Multiple correct
+            answers may be accepted for each question.
           </p>
         </div>
 
