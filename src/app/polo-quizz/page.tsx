@@ -71,53 +71,62 @@ const quizQuestions: QuizQuestion[] = [
   },
   {
     image: "/assets/polo-quizz/main03_part01.png",
-    description: "",
-    answers: [],
+    description:
+      "Hold hand up at side at head level, palm forward. Spread all fingers for the period of two seconds, and then point at the position where the free shot has to be taken. Other arm showing direction of play.",
+    answers: ["5 SECONDS", "POSSESSION"],
   },
   {
     image: "/assets/polo-quizz/main03_part02.png",
-    description: "",
-    answers: [],
+    description:
+      "The side of the other hand repeatedly chops the upper arm showing in direction of play for the period of two seconds, and then point at the position where the free shot has to be taken.",
+    answers: ["ILLEGAL USE OF PADDLE", "ILLEGAL PADDLE", "PADDLE ERROR"],
   },
   {
     image: "/assets/polo-quizz/main03_part03.png",
-    description: "",
-    answers: [],
+    description:
+      "One arm elbow bent, rotating in a circular motion across the body at hip level continuously to a maximum of five seconds. Other arm showing direction of play.",
+    answers: ["PLAY ON", "ADVANTAGE"],
   },
   {
     image: "/assets/polo-quizz/main03_part04.png",
-    description: "",
-    answers: [],
+    description:
+      "Arm extended, palm open, pointing in direction of play parallel to side of field. Other arm showing offence signal.",
+    answers: ["FREE THROW"],
   },
   {
     image: "/assets/polo-quizz/main03_part05.png",
-    description: "",
-    answers: [],
+    description:
+      "Arm extended, index finger pointing at goal in direction of attack. Other arm showing offence signal.",
+    answers: ["FREE SHOT"],
   },
   {
     image: "/assets/polo-quizz/main04_part01.png",
-    description: "",
-    answers: [],
+    description:
+      "Both arms extended index fingers together and pointing at goal.",
+    answers: ["GOAL PENALTY SHOT", "PENALTY SHOT"],
   },
   {
     image: "/assets/polo-quizz/main04_part02.png",
-    description: "",
-    answers: [],
+    description:
+      "One index finger on one hand waved from side to side repeatedly.",
+    answers: ["UNSPORTING BEHAVIOUR"],
   },
   {
     image: "/assets/polo-quizz/main04_part03.png",
-    description: "",
-    answers: [],
+    description:
+      "Hold one arm up in the air, fist clenched and moving vertically for the period of two seconds, and then point at the position where the free shot must be taken.",
+    answers: [
+      "Illegal Holding",
+      "HOLDING",
+      "Illegal Hand Tackle",
+      "Hand Tackle",
+    ],
   },
   {
     image: "/assets/polo-quizz/main04_part04.png",
-    description: "",
-    answers: [],
-  },
-  {
-    image: "/assets/polo-quizz/main04_part05.png",
-    description: "",
-    answers: [],
+    description:
+      "Show the red card only, holding the card in one hand,crossed arms with clenched fist above the shoulder (so that it is visible in front and behind) and verbal statement “ejection red” to the player.",
+    answers: ["Ejection Red Card"],
   },
 ];
 
