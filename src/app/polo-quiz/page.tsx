@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import { quizQuestions as fullQuestionSet } from "./quizz-data";
 import { validateAnswer } from "./quizz-answer-validator";
 
@@ -160,9 +161,11 @@ export default function Page() {
                 <div key={index} className="bg-white rounded-xl shadow-lg p-6">
                   <div className="flex flex-col md:flex-row gap-6">
                     <div className="md:w-1/3">
-                      <img
+                      <Image
                         src={result.question.image}
                         alt={`Question ${index + 1}`}
+                        width={300}
+                        height={200}
                         className="w-full h-auto rounded-lg shadow-md"
                         style={{ maxHeight: "200px", objectFit: "contain" }}
                       />
@@ -233,8 +236,8 @@ export default function Page() {
 
           <p className="text-sm text-gray-700 mb-4 italic">
             Answers are not case-sensitive. Minor spelling errors, and word
-            permutations are accepted. E.g. "Cancelled Goal" and "gool
-            cancelled" are both accepted.
+            permutations are accepted. E.g. &quot;Cancelled Goal&quot; and
+            &quot;gool cancelled&quot; are both accepted.
           </p>
 
           <div className="text-center">
@@ -251,8 +254,11 @@ export default function Page() {
           <h2 className="text-xl font-bold mb-4 text-gray-900">Example</h2>
           <div className="bg-gray-200 rounded-xl shadow-lg px-8 sm:px-6 py-2 sm:py-6">
             <div className="mb-4 text-center">
-              <img
+              <Image
                 src={fullQuestionSet[18].image}
+                alt="Example referee signal"
+                width={200}
+                height={200}
                 className="max-w-3xs max-h-3xs mx-auto rounded-lg shadow-md"
               />
             </div>
@@ -301,15 +307,16 @@ export default function Page() {
           <h2 className="text-xl font-bold mb-2 text-gray-900">
             Getting nerdy
           </h2>
-          <h3 className="text-lg font-bold mb-1 text-gray-900 italic">
-            But how are 'close enough' answers handled?
-          </h3>
+          <p className="text-gray-700 mb-2">
+            But how are &apos;close enough&apos; answers handled?
+          </p>
           <p className=" text-gray-700 mb-2">
-            Consider a correct answer "Time Out". A given input "Timeout" or
-            "Time Outt", should be considered a correct answer, as the quiz aim
-            to validate semantic understanding, and not exact grammar. In
-            computer science such a match is known as 'approximate string
-            matching' or 'fuzzy string matching'.
+            Consider a correct answer &quot;Time Out&quot;. A given input
+            &quot;Timeout&quot; or &quot;Time Outt&quot;, should be considered a
+            correct answer, as the quiz aim to validate semantic understanding,
+            and not exact grammar. In computer science such a match is known as
+            &apos;approximate string matching&apos; or &apos;fuzzy string
+            matching&apos;.
           </p>
           <p className=" text-gray-700 mb-2">
             One way to achieve this, and which is used in this quiz, is through
@@ -324,34 +331,35 @@ export default function Page() {
             </a>{" "}
             algorithm. The algoritm calculates the minimum number of
             single-character edits required to change one word into another.
-            E.g. "Time Out" to "Timeout" has a distance of 1 (removing the
-            space). By defining an acceptable error threshold, relative to the
-            word length, minor mistakes can be considered a match. For example,
-            a threshold of 20% for a 10-character word, would allow two
-            character erros.
+            E.g. &quot;Time Out&quot; to &quot;Timeout&quot; has a distance of 1
+            (removing the space). By defining an acceptable error threshold,
+            relative to the word length, minor mistakes can be considered a
+            match. For example, a threshold of 20% for a 10-character word,
+            would allow two character erros.
           </p>
           <h3 className="text-lg font-bold mb-1 text-gray-900 italic">
             Sure, but what about sentence ordering?
           </h3>
           <p className=" text-gray-700 mb-2">
-            Sentence ordering is handled by comparing 'bag-of-words'. Two
-            sentences are considered identical if they contain the same words,
-            irrespective of order. E.g. "Goal Disallowed" and "Disallowed Goal"
-            are considered identical. Programmatically this is simply achieved
-            by using sets. Additionally, each word is compared using the
-            previously described Levenshtein distance.
+            Sentence ordering is handled by comparing &apos;bag-of-words&apos;.
+            Two sentences are considered identical if they contain the same
+            words, irrespective of order. E.g. &quot;Goal Disallowed&quot; and
+            &quot;Disallowed Goal&quot; are considered identical.
+            Programmatically this is simply achieved by using sets.
+            Additionally, each word is compared using the previously described
+            Levenshtein distance.
           </p>
           <h3 className="text-lg font-bold mb-1 text-gray-900 italic">
             Alright alright, but what about synonyms?
           </h3>
           <p className=" text-gray-700 mb-2">
             To some extent synonyms are handled by providing multiple correct
-            options. Generally however, synonyms such as "Foul" and "Penalty",
-            must be related through semantic matching. This is a more complex
-            problem, and not handled in this quiz. One way to achieve this, is
-            to use word embeddings, ie. mapping words to high dimensional
-            vectors, and comparing their similarity. This is part of how LLM's
-            like ChatGPT handle "understanding" of words.
+            options. Generally however, synonyms such as &quot;Foul&quot; and
+            &quot;Penalty&quot;, must be related through semantic matching. This
+            is a more complex problem, and not handled in this quiz. One way to
+            achieve this, is to use word embeddings, ie. mapping words to high
+            dimensional vectors, and comparing their similarity. This is part of
+            how LLMs like ChatGPT handle &quot;understanding&quot; of words.
           </p>
         </div>
       </main>
@@ -370,9 +378,11 @@ export default function Page() {
 
       <div className="bg-white rounded-xl shadow-lg p-8">
         <div className="mb-6 text-center">
-          <img
+          <Image
             src={question.image}
             alt={`Water polo referee signal ${currentQuestion + 1}`}
+            width={400}
+            height={400}
             className="max-w-full h-auto mx-auto rounded-lg shadow-md"
             style={{ maxHeight: "400px" }}
           />
