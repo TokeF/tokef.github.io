@@ -4,29 +4,30 @@ export function validateAnswer(
 ): boolean {
   // case and whitespace is handled in isFuzzyBagOfWordsMatch
   for (const correctAnswer of correctAnswers) {
-    if (isFuzzyBagOfWordsMatch(userAnswer, correctAnswer)) {
+    // Allow up to 20% of chars to be different
+    const threshold = Math.round(correctAnswer.length * 0.2);
+    if (isFuzzyBagOfWordsMatch(userAnswer, correctAnswer, threshold)) {
       return true;
     }
   }
   return false;
 }
 
-function isFuzzyBagOfWordsMatch(
+export function isFuzzyBagOfWordsMatch(
   userAnswer: string,
-  correctAnswer: string
+  correctAnswer: string,
+  threshold: number
 ): boolean {
   const userWords = userAnswer.toLowerCase().split(/\s+/);
   const correctWords = correctAnswer.toLowerCase().split(/\s+/);
   const unmatchedCorrectWords = [...correctWords];
-  // Allow up to 20% of chars to be different
-  const threshold = Math.floor(correctAnswer.length * 0.2);
 
   // Attempt to match each input word with a correct word, irrespective of order.
   // If all input words match, return true.
   // Words are considered matching if their Levenshtein distance is within the threshold.
   for (const userWord of userWords) {
-    const idxOfMatch = unmatchedCorrectWords.findIndex((correctWord) =>
-      isFuzzyMatch(userWord, correctWord, threshold)
+    const idxOfMatch = unmatchedCorrectWords.findIndex(
+      (correctWord) => levenshteinDist(userWord, correctWord) <= threshold
     );
     if (idxOfMatch !== -1) {
       unmatchedCorrectWords.splice(idxOfMatch, 1);
@@ -35,15 +36,7 @@ function isFuzzyBagOfWordsMatch(
   return unmatchedCorrectWords.length === 0;
 }
 
-function isFuzzyMatch(
-  wordA: string,
-  wordB: string,
-  threshold: number
-): boolean {
-  return levhenschteinDist(wordA, wordB) <= threshold;
-}
-
-function levhenschteinDist(a: string, b: string): number {
+export function levenshteinDist(a: string, b: string): number {
   const n: number = a.length;
   const m: number = b.length;
 
