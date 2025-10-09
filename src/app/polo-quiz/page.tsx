@@ -10,7 +10,7 @@ export default function Page() {
   const [currentAnswer, setCurrentAnswer] = useState("");
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [showAnswers, setShowAnswers] = useState(false);
-  const quizQuestions = fullQuestionSet.slice(0, 2);
+  const quizQuestions = fullQuestionSet.slice(0, 18);
 
   const isAnswerCorrect = (
     userAnswer: string,
@@ -222,33 +222,74 @@ export default function Page() {
         </h1>
 
         <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
-          <h2 className="text-2xl font-bold mb-4 text-gray-900">
-            About This Quiz
+          <h2 className="text-2xl font-bold mb-2 text-gray-900">
+            Instructions
           </h2>
           <p className="text-gray-700 mb-4">
-            Test your knowledge of canoe polo referee signals! This quiz
-            features images and descriptions of various referee gestures from
-            ICF 2025 Rule Book.
+            Each question features an image and a description of a referee
+            signal. Identify the correct term for the signal, and type it in the
+            answer box. Answers must use the English term.
           </p>
-          <p className="text-gray-700 mb-6">
-            The quiz covers common referee signals including start/infringement
-            calls, goal signals, time management, and various throw situations.
-            Ideal for anyone wanting to improve their understanding of the game.
-          </p>
-          <p className="text-sm text-gray-600 mb-6">
-            <strong>Instructions:</strong> Look at each image and description,
-            then type your answer in English in the text field. Multiple correct
-            answers may be accepted for each question.
-          </p>
+
+          <div className="text-center">
+            <button
+              onClick={startQuiz}
+              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition-colors"
+            >
+              Begin Quiz
+            </button>
+          </div>
         </div>
 
-        <div className="text-center">
-          <button
-            onClick={startQuiz}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg text-lg transition-colors"
-          >
-            Begin Quiz
-          </button>
+        <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 className="text-xl font-bold mb-4 text-gray-900">Example</h2>
+          <div className="bg-gray-200 rounded-xl shadow-lg p-2 max-w-full max-h-3xs mx-auto">
+            <div className="mb-4 text-center">
+              <img
+                src={fullQuestionSet[18].image}
+                className="max-w-3xs max-h-3xs mx-auto rounded-lg shadow-md"
+              />
+            </div>
+
+            <div className="mb-6">
+              <h2 className="text-lg font-semibold mb-4 text-gray-900">
+                What referee signal is being shown?
+              </h2>
+              <p className="text-md text-gray-700 mb-4">
+                <strong>Description:</strong> {fullQuestionSet[18].description}
+              </p>
+            </div>
+
+            {/* Answer Input */}
+            <div className="mb-6">
+              <label
+                htmlFor="answer"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
+                Your Answer:
+              </label>
+              <div className="w-full px-3 py-2 border border-green-300 rounded-md bg-green-100 text-green-800 font-medium">
+                {fullQuestionSet[18].answers[0]}
+              </div>
+              <p className="block text-sm font-medium text-gray-700 italic mt-2">
+                Also accepted: {fullQuestionSet[18].answers.slice(1).join(", ")}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 className="text-xl font-bold mb-2 text-gray-900">About</h2>
+          <p className=" text-gray-700 mb-2">
+            Test your knowledge of canoe polo referee signals! This quiz
+            features images and descriptions of various referee gestures from
+            the ICF 2025 Rule Book.
+          </p>
+          <p className=" text-gray-700 mb-6">
+            The quiz covers common referee signals including start/infringement,
+            goal signals and fouls. Ideal for anyone wanting to improve their
+            understanding of the game.
+          </p>
         </div>
       </main>
     );
