@@ -223,12 +223,18 @@ export default function Page() {
 
         <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
           <h2 className="text-2xl font-bold mb-2 text-gray-900">
-            Instructions
+            Test your canoe polo referee signal knowledge!
           </h2>
           <p className="text-gray-700 mb-4">
-            Each question features an image and a description of a referee
-            signal. Identify the correct term for the signal, and type it in the
-            answer box. Answers must use the English term.
+            <strong>Instructions:</strong> Each question features an image and a
+            description of a referee signal. Identify the correct English term
+            for the signal, and type it in the answer box.
+          </p>
+
+          <p className="text-sm text-gray-700 mb-4 italic">
+            Answers are not case-sensitive. Minor spelling errors, and word
+            permutations are accepted. E.g. "Cancelled Goal" and "gool
+            cancelled" are both accepted.
           </p>
 
           <div className="text-center">
@@ -243,7 +249,7 @@ export default function Page() {
 
         <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
           <h2 className="text-xl font-bold mb-4 text-gray-900">Example</h2>
-          <div className="bg-gray-200 rounded-xl shadow-lg p-2 max-w-full max-h-3xs mx-auto">
+          <div className="bg-gray-200 rounded-xl shadow-lg px-8 sm:px-6 py-2 sm:py-6">
             <div className="mb-4 text-center">
               <img
                 src={fullQuestionSet[18].image}
@@ -268,7 +274,7 @@ export default function Page() {
               >
                 Your Answer:
               </label>
-              <div className="w-full px-3 py-2 border border-green-300 rounded-md bg-green-100 text-green-800 font-medium">
+              <div className="w-full px-3 py-2 border rounded-md bg-green-100 text-green-800 font-medium">
                 {fullQuestionSet[18].answers[0]}
               </div>
               <p className="block text-sm font-medium text-gray-700 italic mt-2">
@@ -281,14 +287,71 @@ export default function Page() {
         <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
           <h2 className="text-xl font-bold mb-2 text-gray-900">About</h2>
           <p className=" text-gray-700 mb-2">
-            Test your knowledge of canoe polo referee signals! This quiz
-            features images and descriptions of various referee gestures from
-            the ICF 2025 Rule Book.
+            This quiz features images and descriptions of various referee
+            gestures from the ICF 2025 Rule Book.
           </p>
           <p className=" text-gray-700 mb-6">
             The quiz covers common referee signals including start/infringement,
             goal signals and fouls. Ideal for anyone wanting to improve their
             understanding of the game.
+          </p>
+        </div>
+
+        <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
+          <h2 className="text-xl font-bold mb-2 text-gray-900">
+            Getting nerdy
+          </h2>
+          <h3 className="text-lg font-bold mb-1 text-gray-900 italic">
+            But how are 'close enough' answers handled?
+          </h3>
+          <p className=" text-gray-700 mb-2">
+            Consider a correct answer "Time Out". A given input "Timeout" or
+            "Time Outt", should be considered a correct answer, as the quiz aim
+            to validate semantic understanding, and not exact grammar. In
+            computer science such a match is known as 'approximate string
+            matching' or 'fuzzy string matching'.
+          </p>
+          <p className=" text-gray-700 mb-2">
+            One way to achieve this, and which is used in this quiz, is through
+            the{" "}
+            <a
+              href="https://en.wikipedia.org/wiki/Levenshtein_distance"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-800 underline"
+            >
+              Levenshtein distance
+            </a>{" "}
+            algorithm. The algoritm calculates the minimum number of
+            single-character edits required to change one word into another.
+            E.g. "Time Out" to "Timeout" has a distance of 1 (removing the
+            space). By defining an acceptable error threshold, relative to the
+            word length, minor mistakes can be considered a match. For example,
+            a threshold of 20% for a 10-character word, would allow two
+            character erros.
+          </p>
+          <h3 className="text-lg font-bold mb-1 text-gray-900 italic">
+            Sure, but what about sentence ordering?
+          </h3>
+          <p className=" text-gray-700 mb-2">
+            Sentence ordering is handled by comparing 'bag-of-words'. Two
+            sentences are considered identical if they contain the same words,
+            irrespective of order. E.g. "Goal Disallowed" and "Disallowed Goal"
+            are considered identical. Programmatically this is simply achieved
+            by using sets. Additionally, each word is compared using the
+            previously described Levenshtein distance.
+          </p>
+          <h3 className="text-lg font-bold mb-1 text-gray-900 italic">
+            Alright alright, but what about synonyms?
+          </h3>
+          <p className=" text-gray-700 mb-2">
+            To some extent synonyms are handled by providing multiple correct
+            options. Generally however, synonyms such as "Foul" and "Penalty",
+            must be related through semantic matching. This is a more complex
+            problem, and not handled in this quiz. One way to achieve this, is
+            to use word embeddings, ie. mapping words to high dimensional
+            vectors, and comparing their similarity. This is part of how LLM's
+            like ChatGPT handle "understanding" of words.
           </p>
         </div>
       </main>
