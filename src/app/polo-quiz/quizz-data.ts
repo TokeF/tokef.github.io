@@ -123,6 +123,6 @@ export const quizQuestions: QuizQuestion[] = [
     image: "/assets/polo-quizz/main04_part04.png",
     description:
       "Show the red card only, holding the card in one hand,crossed arms with clenched fist above the shoulder (so that it is visible in front and behind) and verbal statement “<answer>” to the player.",
-    answers: ["Ejection Red Card"],
+    answers: ["Ejection Red Card", "EJECTION RED", "RED EJECTION"],
   },
 ];
