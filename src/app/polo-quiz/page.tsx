@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
-import { quizQuestions } from "./quizz-data";
+import { quizQuestions as fullQuestionSet } from "./quizz-data";
+import { validateAnswer } from "./quizz-answer-validator";
 
 export default function Page() {
   const [started, setStarted] = useState(false);
@@ -9,15 +10,13 @@ export default function Page() {
   const [currentAnswer, setCurrentAnswer] = useState("");
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [showAnswers, setShowAnswers] = useState(false);
+  const quizQuestions = fullQuestionSet.slice(0, 2);
 
   const isAnswerCorrect = (
     userAnswer: string,
     correctAnswers: string[]
   ): boolean => {
-    const normalizedUserAnswer = userAnswer.trim().toLowerCase();
-    return correctAnswers.some(
-      (answer) => answer.toLowerCase().trim() === normalizedUserAnswer
-    );
+    return validateAnswer(userAnswer, correctAnswers);
   };
 
   const getResults = () => {
