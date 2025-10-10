@@ -307,9 +307,9 @@ export default function Page() {
           <h2 className="text-xl font-bold mb-2 text-gray-900">
             Getting nerdy
           </h2>
-          <p className="text-gray-700 mb-2">
+          <h3 className="=text-lg font-bold mb-1 text-gray-700 italic">
             But how are &apos;close enough&apos; answers handled?
-          </p>
+          </h3>
           <p className=" text-gray-700 mb-2">
             Consider a correct answer &quot;Time Out&quot;. A given input
             &quot;Timeout&quot; or &quot;Time Outt&quot;, should be considered a
@@ -337,7 +337,7 @@ export default function Page() {
             match. For example, a threshold of 20% for a 10-character word,
             would allow two character erros.
           </p>
-          <h3 className="text-lg font-bold mb-1 text-gray-900 italic">
+          <h3 className="=text-lg font-bold mb-1 text-gray-700 italic">
             Sure, but what about sentence ordering?
           </h3>
           <p className=" text-gray-700 mb-2">
@@ -349,7 +349,7 @@ export default function Page() {
             Additionally, each word is compared using the previously described
             Levenshtein distance.
           </p>
-          <h3 className="text-lg font-bold mb-1 text-gray-900 italic">
+          <h3 className="=text-lg font-bold mb-1 text-gray-700 italic">
             Alright alright, but what about synonyms?
           </h3>
           <p className=" text-gray-700 mb-2">
