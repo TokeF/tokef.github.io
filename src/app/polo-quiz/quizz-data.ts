@@ -64,7 +64,7 @@ export const quizQuestions: QuizQuestion[] = [
     image: "/assets/polo-quizz/main02_part05.png",
     description:
       "Hold clenched fist against hip for the period of two seconds, and then point at the position where the free shot has to be taken. Other arm showing direction of play.",
-    answers: ["ILLEGAL KAYAK TACKLE", "ILLEGAL TACKLE"],
+    answers: ["ILLEGAL KAYAK TACKLE", "ILLEGAL TACKLE", "TACKLE"],
   },
   {
     image: "/assets/polo-quizz/main03_part01.png",
