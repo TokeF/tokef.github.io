@@ -73,6 +73,20 @@ const projects: Project[] = [
     ],
   },
   {
+    year: "2023",
+    title: "Net Asset Value (NAV) Estimation Service",
+    client: "Aleta",
+    description:
+      "Custom built a net asset value (NAV) estimation service, involving communication and specification with a customer, resulting in a NAV delivery 6 hours earlier than the previous manual process.",
+    highlights: [
+      "Collaborated directly with the customer to gather requirements and define specifications for accurate NAV calculations.",
+      "Automated the previously manual NAV calculation process, significantly reducing processing time and human error.",
+      "Delivered NAV estimates 6 hours earlier, enabling faster decision-making for investment operations.",
+      "Implemented robust data validation and error handling to ensure calculation accuracy and reliability.",
+    ],
+    technologies: ["C# .NET", "Azure Functions", "SQL Server", "REST APIs"],
+  },
+  {
     year: "2021",
     title: "Financial Data API Gateway",
     client: "Aleta",
