@@ -56,5 +56,15 @@ test("shoudl handle threshold", () => {
   expect(isFuzzyBagOfWordsMatch("gool", "goal", 1)).toBe(true);
   expect(isFuzzyBagOfWordsMatch("aaa", "bbb", 3)).toBe(true);
   expect(isFuzzyBagOfWordsMatch("aaa", "bbbb", 3)).toBe(false);
+});
+
+test("shoudl handle multiple words", () => {
   expect(isFuzzyBagOfWordsMatch("timeout", "Time Out", 1)).toBe(true);
+  expect(
+    isFuzzyBagOfWordsMatch("use of illegal paddle", "Illegal paddle", 0)
+  ).toBe(true);
+  // To many extra words
+  expect(
+    isFuzzyBagOfWordsMatch("using an illegal paddle wrong", "Illegal paddle", 0)
+  ).toBe(false);
 });

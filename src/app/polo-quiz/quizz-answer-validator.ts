@@ -28,6 +28,7 @@ export function isFuzzyBagOfWordsMatch(
   const userWords = userAnswer.split(/\s+/);
   const correctWords = correctAnswer.split(/\s+/);
   const unmatchedCorrectWords = [...correctWords];
+  console.log("User words:", userWords);
 
   // Attempt to match each input word with a correct word, irrespective of order.
   // If all input words match, return true.
@@ -40,7 +41,10 @@ export function isFuzzyBagOfWordsMatch(
       unmatchedCorrectWords.splice(idxOfMatch, 1);
     }
   }
-  return unmatchedCorrectWords.length === 0;
+  return (
+    unmatchedCorrectWords.length === 0 &&
+    userWords.length - correctWords.length < 3
+  );
 }
 
 export function levenshteinDist(a: string, b: string): number {
