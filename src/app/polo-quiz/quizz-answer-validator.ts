@@ -18,8 +18,15 @@ export function isFuzzyBagOfWordsMatch(
   correctAnswer: string,
   threshold: number
 ): boolean {
-  const userWords = userAnswer.toLowerCase().split(/\s+/);
-  const correctWords = correctAnswer.toLowerCase().split(/\s+/);
+  userAnswer = userAnswer.toLowerCase();
+  correctAnswer = correctAnswer.toLowerCase();
+  // First just test regular levenshtein to include white space differences. Othwerwise test each word individually.
+  if (levenshteinDist(userAnswer, correctAnswer) <= threshold) {
+    return true;
+  }
+
+  const userWords = userAnswer.split(/\s+/);
+  const correctWords = correctAnswer.split(/\s+/);
   const unmatchedCorrectWords = [...correctWords];
 
   // Attempt to match each input word with a correct word, irrespective of order.

@@ -56,4 +56,5 @@ test("shoudl handle threshold", () => {
   expect(isFuzzyBagOfWordsMatch("gool", "goal", 1)).toBe(true);
   expect(isFuzzyBagOfWordsMatch("aaa", "bbb", 3)).toBe(true);
   expect(isFuzzyBagOfWordsMatch("aaa", "bbbb", 3)).toBe(false);
+  expect(isFuzzyBagOfWordsMatch("timeout", "Time Out", 1)).toBe(true);
 });
