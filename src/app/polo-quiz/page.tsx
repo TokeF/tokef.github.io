@@ -128,17 +128,17 @@ export default function Page() {
 
             {percentage >= 80 && (
               <p className="text-lg text-green-600 font-semibold">
-                Excellent work! 🎉
+                Excellent work! This is Lobster material 🦞🦞
               </p>
             )}
             {percentage >= 60 && percentage < 80 && (
               <p className="text-lg text-yellow-600 font-semibold">
-                Good job! 👍
+                Good job!{" "}
               </p>
             )}
             {percentage < 60 && (
               <p className="text-lg text-red-600 font-semibold">
-                Is this Aarhus Lobster Level? Keep practicing! 📚
+                Is this Aarhus Lobster Level? Keep practicing!
               </p>
             )}
           </div>
