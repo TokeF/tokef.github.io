@@ -72,7 +72,7 @@ export default function HobbyProjects() {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block mt-auto px-4 py-2 bg-gradient-to-r from-[#AE445A] to-[#4B4376] text-white rounded hover:scale-105 transition"
+                className="inline-block mt-auto px-4 py-2 bg-gradient-to-r from-[#000000] to-[#ecdfcc] text-white rounded hover:scale-105 transition"
               >
                 View Project
               </a>

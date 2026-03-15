@@ -52,7 +52,7 @@ export const quizQuestions: QuizQuestion[] = [
     image: "/assets/polo-quizz/main02_part03.png",
     description:
       "Arms extended forward at shoulder level, fists clenched,thumbs up.",
-    answers: ["REFEREE'S BALL"],
+    answers: ["REFEREE'S BALL", "Umpire Ball"],
   },
   {
     image: "/assets/polo-quizz/main02_part04.png",
@@ -70,7 +70,7 @@ export const quizQuestions: QuizQuestion[] = [
     image: "/assets/polo-quizz/main03_part01.png",
     description:
       "Hold hand up at side at head level, palm forward. Spread all fingers for the period of two seconds, and then point at the position where the free shot has to be taken. Other arm showing direction of play.",
-    answers: ["5 SECONDS", "POSSESSION"],
+    answers: ["5 SECONDS", "POSSESSION", "Five Seconds"],
   },
   {
     image: "/assets/polo-quizz/main03_part02.png",

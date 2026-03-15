@@ -15,7 +15,7 @@ export default function Page() {
 
   const isAnswerCorrect = (
     userAnswer: string,
-    correctAnswers: string[]
+    correctAnswers: string[],
   ): boolean => {
     return validateAnswer(userAnswer, correctAnswers);
   };
@@ -62,6 +62,18 @@ export default function Page() {
     }
   };
 
+  const handleQuit = () => {
+    const updatedAnswers = [...userAnswers];
+    updatedAnswers[currentQuestion] = currentAnswer;
+
+    while (updatedAnswers.length < quizQuestions.length) {
+      updatedAnswers.push("");
+    }
+
+    setUserAnswers(updatedAnswers);
+    setQuizCompleted(true);
+  };
+
   const startQuiz = () => {
     setStarted(true);
     setCurrentQuestion(0);
@@ -101,8 +113,8 @@ export default function Page() {
                   percentage >= 70
                     ? "#10B981"
                     : percentage >= 50
-                    ? "#F59E0B"
-                    : "#EF4444",
+                      ? "#F59E0B"
+                      : "#EF4444",
               }}
             >
               {percentage}%
@@ -416,13 +428,20 @@ export default function Page() {
         </div>
 
         {/* Navigation Buttons */}
-        <div className="flex justify-between">
+        <div className="flex flex-wrap justify-between gap-3">
           <button
             onClick={handlePrevious}
             disabled={currentQuestion === 0}
             className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             Previous
+          </button>
+
+          <button
+            onClick={handleQuit}
+            className="px-4 py-2 bg-teal-600 text-white rounded-md hover:bg-teal-700 transition-colors"
+          >
+            Exit
           </button>
 
           <button
